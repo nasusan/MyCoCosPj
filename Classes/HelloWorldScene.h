@@ -5,11 +5,13 @@
 
 class HelloWorld : public cocos2d::Layer
 {
+private:
+
 public:
     static cocos2d::Scene* createScene();
 
     virtual bool init();
-    
+
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
     

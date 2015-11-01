@@ -40,6 +40,10 @@ bool HelloWorld::init()
                                            "CloseSelected.png",
                                            CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
     
+	// 画面右下に表示
+	// origin()=(0,0)じゃないことに注意。
+	// 必ず＋origin してやらないといけない
+	// デフォルトのアンカーポイントはNodeの中央のため、割る２している
 	closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
                                 origin.y + closeItem->getContentSize().height/2));
 
@@ -51,6 +55,8 @@ bool HelloWorld::init()
     /////////////////////////////
     // 3. add your codes below...
 
+
+#if 0
     // add a label shows "Hello World"
     // create and initialize a label
     
@@ -71,11 +77,17 @@ bool HelloWorld::init()
 
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
-    
+#endif
+
+	// 文字の表示
+	// CMenuItem
+	// this->addChild(menu);
+
+
     return true;
 }
 
-
+ 
 void HelloWorld::menuCloseCallback(Ref* pSender)
 {
     Director::getInstance()->end();
