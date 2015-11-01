@@ -21,7 +21,10 @@
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="TextMenuItem.cpp">
+    <ClCompile Include="..\Classes\TestItem.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TestScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -35,7 +38,10 @@
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="TextMenuItem.h">
+    <ClInclude Include="..\Classes\TestItem.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TestScene.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

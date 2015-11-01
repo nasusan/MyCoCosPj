@@ -1,4 +1,6 @@
 #include "HelloWorldScene.h"
+#include "TestScene.h"
+#include "base/ccMacros.h"
 
 USING_NS_CC;
 
@@ -12,7 +14,7 @@ Scene* HelloWorld::createScene()
 
     // add layer as a child to scene
     scene->addChild(layer);
-
+	
     // return the scene
     return scene;
 }
@@ -48,13 +50,12 @@ bool HelloWorld::init()
                                 origin.y + closeItem->getContentSize().height/2));
 
     // create menu, it's an autorelease object
-    auto menu = Menu::create(closeItem, NULL);
-    menu->setPosition(Vec2::ZERO);
-    this->addChild(menu, 1);
+    auto closeMenu = Menu::create(closeItem, NULL);
+    closeMenu->setPosition(Vec2::ZERO);
+    this->addChild(closeMenu, 1);
 
     /////////////////////////////
     // 3. add your codes below...
-
 
 #if 0
     // add a label shows "Hello World"
@@ -68,7 +69,9 @@ bool HelloWorld::init()
 
     // add the label as a child to this layer
     this->addChild(label, 1);
+#endif 
 
+#if 0
     // add "HelloWorld" splash screen"
     auto sprite = Sprite::create("HelloWorld.png");
 
@@ -79,10 +82,88 @@ bool HelloWorld::init()
     this->addChild(sprite, 0);
 #endif
 
-	// 文字の表示
-	// CMenuItem
-	// this->addChild(menu);
+#if 0
+	/////////////////////////////////////////////////////////
+	//  テストメニュー作成実験（あくまで仮のもの）
+	//TestController* testController = new TestController();
 
+	//テストメニュー作成
+	TestItem* test = new TestItem();
+	test->setTestName("test");
+
+	//testController->add(test);
+
+	// 文字の表示
+	//testController->draw();
+
+	// this->addChild(testController);
+#endif
+
+
+#if 0
+	//画像を使ったメニュー呼び出し例
+	//menuを使ってみる
+	//	http://study-cocos2d-x.info/scenelayer/61/
+	//ボタンを押した時にラムダ式を呼び出す
+	//CC_CALLBACK_1でもOK
+	auto mItem = MenuItemImage::create("CloseNormal.png", "CloseSelected.png", [](Ref*sender) {
+
+		// create a scene. it's an autorelease object
+		auto scene = TestScene::createScene();
+		// run
+		Director::getInstance()->pushScene(scene);
+	});
+
+	mItem->setPosition(Point(visibleSize.width / 2, visibleSize.height / 2));
+
+	//メニューを作成
+	auto testMenu = Menu::create(mItem, NULL);
+	testMenu->setPosition(Point::ZERO);
+	this->addChild(testMenu);
+#endif 
+
+#if 1
+	//テキストメニューを使った例
+	//	http://study-cocos2d-x.info/scenelayer/61/
+
+	float menuY = visibleSize.height - 16;
+
+	// テスト１
+	auto testName1 = LabelTTF::create("TEST 1", "Arial", 32);
+	auto labelItem1 = MenuItemLabel::create(testName1, [](Ref*sender) {
+		//ボタンを押した時にラムダ式を呼び出す
+		//CC_CALLBACK_1でもOK
+		auto scene = TestScene::createScene();
+		Director::getInstance()->pushScene(scene);
+	});
+	labelItem1->setPosition(Point(visibleSize.width / 2, menuY ));
+
+	// テスト２
+	auto testName2 = LabelTTF::create("TEST 2", "Arial", 32);
+	auto labelItem2 = MenuItemLabel::create(testName2, [](Ref*sender) {
+		//ボタンを押した時にラムダ式を呼び出す
+		//CC_CALLBACK_1でもOK
+		auto scene = TestScene::createScene();
+		Director::getInstance()->pushScene(scene);
+	});
+	labelItem2->setPosition(Point(visibleSize.width / 2, menuY-32));
+
+	// テスト３
+	auto testName3 = LabelTTF::create("TEST 3", "Arial", 32);
+	auto labelItem3 = MenuItemLabel::create(testName3, [](Ref*sender) {
+		//ボタンを押した時にラムダ式を呼び出す
+		//CC_CALLBACK_1でもOK
+		auto scene = TestScene::createScene();
+		Director::getInstance()->pushScene(scene);
+	});
+	labelItem3->setPosition(Point(visibleSize.width / 2, menuY-32*2));
+
+	//メニューを作成
+	auto testMenu = Menu::create(labelItem1, labelItem2, labelItem3, NULL);
+	testMenu->setPosition(Point::ZERO);
+	this->addChild(testMenu);
+
+#endif 
 
     return true;
 }
